@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Identification App for Text and Objects</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Deepfake Video Generator</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'home' %}">With 2 Videos</a>
+                </li>
+                <li class="nav-item active">
+                    <a class="nav-link" href="{% url 'home1' %}">With image and video</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid my-2">
+        <div class="text-center">
+            <h1>Deepfake Video Generator Webapp</h1>
+        </div>
+        <div class="card bg-light my-4">
+            <div class="py-4 text-center">
+                <form action="" method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p}}
+                    <input type="submit" value="Generate Deepfake Video" class="btn btn-primary"
+                        style="margin-right: 70px;">
+                </form>
+            </div>
+            {% if video %}
+            <div class="container bg-info py-4">
+                <div class="row">
+                    <div class="col-3">
+                        <img src="/media/{{ r }}" alt="" width="280" height="240">
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-3">
+                        <video width="320" height="240" controls>
+                            <source src="/media/{{ s }}" type="video/mp4">
+
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-3">
+                        <video width="320" height="240" controls>
+                            <source src="/media/generated1/generatednew.mp4" type="video/mp4">
+
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+                <div class="row text-center">
+                    <div class="col-3">
+                        <h4>Given Image</h4>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-3">
+                        <h4>Given Video</h4>
+                    </div>
+                    <div class="col-1"></div>
+                    <div class="col-3">
+                        <h4>Generated Video</h4>
+                    </div>
+                </div>
+            </div><br>
+            <div class="container bg-warning">
+                <div class="row text-center">
+                    <div class="col-4"></div>
+                    <div class="col-4">
+                        <h4>All in One Video</h4>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div class="col-4">
+                        <video width="720" height="400" controls>
+                            <source src="/media/generated1/merge1.mp4" type="video/mp4">
+        
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    </div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+        integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+        crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+        integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
